@@ -245,6 +245,26 @@
     font-size: 0.875rem; color: var(--gray);
     line-height: 1.55;
   }
+  .card-links {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 1rem;
+  }
+  .card-link-btn {
+    display: inline-block;
+    padding: 6px 13px;
+    background: var(--mist);
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.78rem; font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .card-link-btn:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+  }
   .card-badge {
     display: inline-block;
     margin-top: 1rem;
@@ -414,6 +434,7 @@
       <button onclick="setTab(this,'Search hotels...')">🏨 Hotel</button>
       <button onclick="setTab(this,'Search now showing...')">🎬 Cinema</button>
       <button onclick="setTab(this,'Find a freelancer...')">💼 Freelancer</button>
+      <button onclick="setTab(this,'Search medical services...')">🏥 Medical</button>
       <button onclick="setTab(this,'Search events...')">🎉 Events</button>
     </div>
     <div class="search-box">
@@ -452,27 +473,54 @@
 
   <div class="services-grid">
 
-    <a href="#" class="service-card">
+    <!-- BUS -->
+    <div class="service-card" onclick="void(0)">
       <div class="card-icon">🚌</div>
       <div class="card-title">Bus Tickets</div>
-      <div class="card-desc">Book inter-city and private bus seats. SLTB, Intercity Express, and luxury coaches island-wide.</div>
-      <span class="card-badge">Available now</span>
-    </a>
+      <div class="card-desc">Book inter-city and private bus seats island-wide. Choose your preferred operator below.</div>
+      <div class="card-links">
+        <a href="https://sltb.eseat.lk/" target="_blank" rel="noopener" class="card-link-btn">SLTB eSeat</a>
+        <a href="https://magiya.lk/" target="_blank" rel="noopener" class="card-link-btn">Magiya.lk</a>
+        <a href="https://busseat.lk/" target="_blank" rel="noopener" class="card-link-btn">BusSeat.lk</a>
+      </div>
+      <span class="card-badge">3 operators</span>
+    </div>
 
-    <a href="#" class="service-card">
+    <!-- HOTEL -->
+    <div class="service-card" onclick="void(0)">
       <div class="card-icon">🏨</div>
       <div class="card-title">Hotels & Stays</div>
-      <div class="card-desc">From budget guesthouses in Ella to 5-star resorts in Bentota. Best rates, instant confirmation.</div>
+      <div class="card-desc">From budget guesthouses in Ella to 5-star resorts in Bentota. Compare rates across platforms.</div>
+      <div class="card-links">
+        <a href="https://www.booking.com/country/lk.html" target="_blank" rel="noopener" class="card-link-btn">Booking.com</a>
+        <a href="https://ar.trivago.com/en-145/odr/hotels-sri-lanka?search=200-185" target="_blank" rel="noopener" class="card-link-btn">Trivago LK</a>
+      </div>
       <span class="card-badge">1,200+ hotels</span>
-    </a>
+    </div>
 
-    <a href="#" class="service-card">
+    <!-- CINEMA -->
+    <div class="service-card" onclick="void(0)">
       <div class="card-icon">🎬</div>
       <div class="card-title">Cinema Tickets</div>
       <div class="card-desc">Pick your seat online at Liberty, Savoy, Empire, PVR, and cinemas across Sri Lanka.</div>
+      <div class="card-links">
+        <a href="https://lk.bookmyshow.com/" target="_blank" rel="noopener" class="card-link-btn">BookMyShow LK</a>
+      </div>
       <span class="card-badge">Now showing</span>
-    </a>
+    </div>
 
+    <!-- MEDICAL -->
+    <div class="service-card" onclick="void(0)">
+      <div class="card-icon">🏥</div>
+      <div class="card-title">Medical Services</div>
+      <div class="card-desc">Book doctor channelling appointments and medical certificates including driving licence medicals online.</div>
+      <div class="card-links">
+        <a href="https://www.echannelling.com/driving-license-medical" target="_blank" rel="noopener" class="card-link-btn">eChannelling</a>
+      </div>
+      <span class="card-badge">New</span>
+    </div>
+
+    <!-- FREELANCERS -->
     <a href="#" class="service-card">
       <div class="card-icon">💼</div>
       <div class="card-title">Freelancers</div>
@@ -542,14 +590,14 @@
 <section class="partners" id="partners">
   <div class="partners-label">Trusted by Sri Lanka's leading services</div>
   <div class="partners-row">
-    <div class="partner-chip">SLTB</div>
-    <div class="partner-chip">Intercity Express</div>
-    <div class="partner-chip">Liberty Cinema</div>
-    <div class="partner-chip">Savoy Cinema</div>
-    <div class="partner-chip">Agoda LK</div>
+    <div class="partner-chip">SLTB eSeat</div>
+    <div class="partner-chip">Magiya.lk</div>
+    <div class="partner-chip">BusSeat.lk</div>
+    <div class="partner-chip">Booking.com</div>
+    <div class="partner-chip">Trivago LK</div>
     <div class="partner-chip">BookMyShow LK</div>
+    <div class="partner-chip">eChannelling</div>
     <div class="partner-chip">PickMe</div>
-    <div class="partner-chip">Yamu.lk</div>
   </div>
 </section>
 
@@ -572,9 +620,10 @@
     </div>
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="#">Bus Tickets</a>
-      <a href="#">Hotels</a>
-      <a href="#">Cinema</a>
+      <a href="https://sltb.eseat.lk/" target="_blank" rel="noopener">Bus Tickets</a>
+      <a href="https://www.booking.com/country/lk.html" target="_blank" rel="noopener">Hotels</a>
+      <a href="https://lk.bookmyshow.com/" target="_blank" rel="noopener">Cinema</a>
+      <a href="https://www.echannelling.com/driving-license-medical" target="_blank" rel="noopener">Medical</a>
       <a href="#">Freelancers</a>
       <a href="#">Events</a>
     </div>
