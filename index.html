@@ -3,608 +3,1856 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>24hours.lk — Book Anything in Sri Lanka</title>
+<title>24hours.lk — Book Anything in Sri Lanka, Any Time</title>
+<meta name="description" content="Sri Lanka's all-in-one booking platform. Bus tickets, hotels, cinema, freelancers, events and more — one account, available 24 hours a day."/>
+<meta property="og:title" content="24hours.lk — Book Anything in Sri Lanka"/>
+<meta property="og:description" content="Sri Lanka's unified booking platform. 40+ services, 800+ partners, available 24/7."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://24hours.lk"/>
+<meta property="og:image" content="https://24hours.lk/og.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="24hours.lk"/>
+<meta name="twitter:description" content="Book anything in Sri Lanka — one platform, any time."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "24hours.lk",
+  "url": "https://24hours.lk",
+  "description": "Sri Lanka's all-in-one booking platform",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://24hours.lk/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══════════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --red:    #C0181C;
-    --red-dk: #8B0E11;
-    --gold:   #D4A017;
-    --night:  #0F0F0F;
-    --ink:    #1A1A1A;
-    --mist:   #F5F3EE;
-    --white:  #FFFFFF;
-    --gray:   #6B7280;
-    --border: #E5E2DC;
-  }
+:root {
+  /* Brand */
+  --brand:      #FF5A1F;
+  --brand-lt:   #FF7A45;
+  --brand-dk:   #E6490F;
+  --brand-glow: rgba(255,90,31,0.35);
 
-  html { scroll-behavior: smooth; }
+  /* Surfaces */
+  --bg:         #0B0B0B;
+  --surface:    #111111;
+  --surface-2:  #171717;
+  --surface-3:  #1E1E1E;
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--white);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
+  /* Borders */
+  --border:     rgba(255,255,255,0.08);
+  --border-md:  rgba(255,255,255,0.12);
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5vw;
-    height: 64px;
-    background: rgba(15,15,15,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.4rem; font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.02em;
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 2rem; }
-  .nav-links a {
-    color: rgba(255,255,255,0.65);
-    text-decoration: none; font-size: 0.875rem; font-weight: 500;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta {
-    background: var(--red);
-    color: var(--white);
-    border: none; border-radius: 8px;
-    padding: 8px 20px; font-size: 0.875rem; font-weight: 600;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--red-dk); }
+  /* Text */
+  --text-1:     #FFFFFF;
+  --text-2:     rgba(255,255,255,0.65);
+  --text-3:     rgba(255,255,255,0.38);
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: var(--night);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 120px 5vw 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(192,24,28,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-eyebrow {
-    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-    position: relative;
-  }
-  .hero-headline {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 6rem);
-    font-weight: 800;
-    color: var(--white);
-    text-align: center;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    max-width: 860px;
-    position: relative;
-  }
-  .hero-headline .accent { color: var(--red); }
-  .hero-sub {
-    margin-top: 1.5rem;
-    color: rgba(255,255,255,0.5);
-    font-size: 1.1rem; text-align: center;
-    max-width: 520px;
-    line-height: 1.6;
-    position: relative;
-  }
+  /* Gradients */
+  --grad:       linear-gradient(135deg, #FF7A45 0%, #FF5A1F 50%, #E6490F 100%);
+  --grad-soft:  linear-gradient(135deg, rgba(255,122,69,0.15) 0%, rgba(230,73,15,0.05) 100%);
 
-  /* ── SEARCH BAR (signature element) ── */
-  .search-wrap {
-    margin-top: 2.8rem;
-    width: 100%; max-width: 700px;
-    position: relative;
-    z-index: 2;
-  }
-  .search-tabs {
-    display: flex; gap: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px 12px 0 0;
-    padding: 6px 8px 0;
-    overflow-x: auto;
-  }
-  .search-tabs button {
-    flex-shrink: 0;
-    padding: 8px 16px;
-    font-size: 0.8rem; font-weight: 600;
-    background: transparent; border: none;
-    color: rgba(255,255,255,0.45);
-    border-radius: 8px 8px 0 0;
-    cursor: pointer; transition: all 0.18s;
-  }
-  .search-tabs button.active {
-    background: var(--white);
-    color: var(--ink);
-  }
-  .search-box {
-    display: flex;
-    background: var(--white);
-    border-radius: 0 12px 12px 12px;
-    overflow: hidden;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-  }
-  .search-box input {
-    flex: 1;
-    padding: 18px 20px;
-    font-size: 1rem; font-family: 'Inter', sans-serif;
-    border: none; outline: none;
-    background: transparent; color: var(--ink);
-  }
-  .search-box input::placeholder { color: #9CA3AF; }
-  .search-btn {
-    padding: 14px 28px;
-    background: var(--red);
-    color: var(--white);
-    border: none; font-size: 0.95rem; font-weight: 600;
-    cursor: pointer; transition: background 0.18s;
-    font-family: 'Inter', sans-serif;
-  }
-  .search-btn:hover { background: var(--red-dk); }
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
 
-  .hero-stats {
-    display: flex; gap: 3rem;
-    margin-top: 3rem;
-    position: relative;
-  }
-  .hero-stats .stat { text-align: center; }
-  .hero-stats .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem; font-weight: 800;
-    color: var(--white);
-  }
-  .hero-stats .stat-label {
-    font-size: 0.75rem; color: rgba(255,255,255,0.4);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    margin-top: 2px;
-  }
-  .stat-divider {
-    width: 1px; background: rgba(255,255,255,0.1); align-self: stretch;
-  }
+  /* Radii */
+  --r-sm:  8px;
+  --r-md:  14px;
+  --r-lg:  20px;
+  --r-xl:  28px;
 
-  /* ── SERVICES SECTION ── */
-  .services {
-    background: var(--mist);
-    padding: 100px 5vw;
-  }
-  .section-header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-bottom: 3rem;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .section-eyebrow {
-    font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 0.6rem;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-  .section-link {
-    color: var(--red); font-size: 0.875rem; font-weight: 600;
-    text-decoration: none; white-space: nowrap;
-    transition: opacity 0.2s;
-  }
-  .section-link:hover { opacity: 0.7; }
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
-  }
-  .service-card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 28px 28px 24px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    text-decoration: none; color: inherit;
-    display: block;
-  }
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.1);
-    border-color: var(--red);
-  }
-  .card-icon {
-    width: 52px; height: 52px;
-    background: var(--mist);
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.6rem;
-    margin-bottom: 1.2rem;
-  }
-  .service-card:hover .card-icon { background: rgba(192,24,28,0.08); }
-  .card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem; font-weight: 700;
-    margin-bottom: 0.4rem; color: var(--ink);
-  }
-  .card-desc {
-    font-size: 0.875rem; color: var(--gray);
-    line-height: 1.55;
-  }
-  .card-badge {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 4px 10px;
-    background: rgba(192,24,28,0.08);
-    color: var(--red);
-    border-radius: 100px;
-    font-size: 0.72rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.06em;
-  }
+html { scroll-behavior: smooth; }
 
-  /* ── HOW IT WORKS ── */
-  .how {
-    background: var(--white);
-    padding: 100px 5vw;
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-1);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-body); cursor: pointer; }
+ul, ol { list-style: none; }
+
+/* ═══════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════ */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+}
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: var(--grad);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--r-sm);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 24px rgba(255,90,31,0.35);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.btn-brand:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(255,90,31,0.45);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--border-md);
+  border-radius: var(--r-sm);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.btn-ghost:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: rgba(255,90,31,0.06);
+}
+
+/* Reveal animation base */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+.reveal-d5 { transition-delay: 0.40s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ═══════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════ */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  transition: background 0.35s var(--ease-in-out), border-color 0.35s, box-shadow 0.35s;
+  border-bottom: 1px solid transparent;
+}
+#nav.scrolled {
+  background: rgba(11,11,11,0.82);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom-color: var(--border);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+  gap: 2rem;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo-icon {
+  width: 36px; height: 36px;
+  background: var(--grad);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 16px rgba(255,90,31,0.4);
+  flex-shrink: 0;
+}
+.nav-logo-icon svg { width: 20px; height: 20px; }
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+}
+.nav-logo-text .tld { color: var(--brand); }
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+}
+.nav-links a {
+  padding: 7px 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-2);
+  border-radius: var(--r-sm);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover {
+  color: var(--text-1);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Nav actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.nav-login {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-2);
+  padding: 7px 14px;
+  border-radius: var(--r-sm);
+  border: none;
+  background: transparent;
+  transition: color 0.2s;
+}
+.nav-login:hover { color: var(--text-1); }
+.nav-cta {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: var(--r-sm);
+  border: none;
+  background: var(--grad);
+  box-shadow: 0 0 18px rgba(255,90,31,0.3);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(255,90,31,0.4);
+}
+
+/* Hamburger */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+}
+.nav-burger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text-1);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.nav-drawer {
+  display: none;
+  position: fixed;
+  inset: 68px 0 0;
+  background: rgba(11,11,11,0.97);
+  backdrop-filter: blur(20px);
+  z-index: 800;
+  flex-direction: column;
+  padding: 2rem clamp(1.25rem,5vw,3.5rem);
+  gap: 0.5rem;
+  transform: translateX(100%);
+  transition: transform 0.3s var(--ease-out);
+}
+.nav-drawer.open {
+  display: flex;
+  transform: translateX(0);
+}
+.nav-drawer a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-2);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.nav-drawer a:hover { color: var(--text-1); }
+.nav-drawer .drawer-cta {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(5.5rem,12vw,9rem) clamp(1.25rem,5vw,3.5rem) clamp(4rem,8vw,6rem);
+  overflow: hidden;
+}
+
+/* Background canvas */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+/* Glow orbs */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+.hero-orb-1 {
+  width: clamp(340px, 55vw, 700px);
+  height: clamp(340px, 55vw, 700px);
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255,90,31,0.22) 0%, transparent 70%);
+}
+.hero-orb-2 {
+  width: 400px; height: 400px;
+  bottom: -15%; left: -10%;
+  background: radial-gradient(circle, rgba(255,90,31,0.1) 0%, transparent 70%);
+}
+.hero-orb-3 {
+  width: 350px; height: 350px;
+  bottom: -10%; right: -8%;
+  background: radial-gradient(circle, rgba(255,90,31,0.08) 0%, transparent 70%);
+}
+
+/* Grid overlay */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 8px;
+  background: rgba(255,90,31,0.12);
+  border: 1px solid rgba(255,90,31,0.28);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--brand-lt);
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
+}
+.hero-badge-dot {
+  width: 22px; height: 22px;
+  background: var(--grad);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: var(--text-1);
+  margin-bottom: 1.4rem;
+}
+.hero-headline .line-accent {
+  display: block;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+}
+
+/* Search */
+.hero-search {
+  width: 100%;
+  max-width: 720px;
+  margin-bottom: 1.5rem;
+}
+.search-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px 0;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--r-md) var(--r-md) 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.search-tabs::-webkit-scrollbar { display: none; }
+.search-tabs button {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  border-radius: 8px 8px 0 0;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.search-tabs button.active {
+  background: #fff;
+  color: #111;
+}
+.search-tabs button:hover:not(.active) {
+  color: var(--text-2);
+  background: rgba(255,255,255,0.06);
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 0 var(--r-md) var(--r-md) var(--r-md);
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.search-bar-icon {
+  padding: 0 16px 0 20px;
+  color: #9CA3AF;
+  flex-shrink: 0;
+}
+.search-bar input {
+  flex: 1;
+  padding: 19px 12px 19px 0;
+  font-size: 0.975rem;
+  font-family: var(--font-body);
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #111;
+  min-width: 0;
+}
+.search-bar input::placeholder { color: #9CA3AF; }
+.search-divider {
+  width: 1px;
+  height: 28px;
+  background: #E5E7EB;
+  flex-shrink: 0;
+}
+.search-submit {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 6px;
+  padding: 12px 22px;
+  background: var(--grad);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--r-sm);
+  box-shadow: 0 4px 16px rgba(255,90,31,0.4);
+  transition: opacity 0.18s, transform 0.18s;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+.search-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.popular-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.popular-label {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  font-weight: 500;
+  align-self: center;
+  white-space: nowrap;
+}
+.popular-chip {
+  padding: 5px 13px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+}
+.popular-chip:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: rgba(255,90,31,0.06);
+}
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+.stat-sep {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+/* ═══════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════ */
+.services {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: var(--bg);
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 16px; height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+}
+.section-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 520px;
+}
+.section-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+.section-header-left { flex: 1; min-width: 260px; }
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--brand);
+  transition: gap 0.2s;
+  white-space: nowrap;
+}
+.view-all-link:hover { gap: 10px; }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 1.25rem;
+}
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.25s, transform 0.25s var(--ease-out), box-shadow 0.25s, background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-soft);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,90,31,0.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,90,31,0.15);
+}
+.service-card:hover::before { opacity: 1; }
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-icon {
+  width: 52px; height: 52px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  transition: background 0.25s, border-color 0.25s;
+}
+.service-card:hover .card-icon {
+  background: rgba(255,90,31,0.12);
+  border-color: rgba(255,90,31,0.3);
+}
+.card-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(255,90,31,0.1);
+  color: var(--brand-lt);
+  border: 1px solid rgba(255,90,31,0.2);
+  letter-spacing: 0.02em;
+}
+.card-badge.soon {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-3);
+  border-color: var(--border);
+}
+.card-body { flex: 1; }
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text-1);
+}
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-3);
+  transition: color 0.2s, gap 0.2s;
+  margin-top: 0.5rem;
+}
+.service-card:hover .card-arrow {
+  color: var(--brand);
+  gap: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════ */
+.how {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.how-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+.how-left .section-sub { margin-top: 1rem; margin-bottom: 2.5rem; }
+.how-cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.how-step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s, background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.how-step::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--grad);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s var(--ease-out);
+}
+.how-step:hover { border-color: rgba(255,90,31,0.25); }
+.how-step:hover::after { transform: scaleY(1); }
+.step-num-wrap {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(255,90,31,0.12);
+  border: 1px solid rgba(255,90,31,0.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.step-body {}
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: var(--text-1);
+}
+.step-desc {
+  font-size: 0.86rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   TRUST / PARTNERS
+═══════════════════════════════════════════ */
+.partners {
+  padding: clamp(3.5rem, 6vw, 5rem) 0;
+  background: var(--bg);
+  overflow: hidden;
+}
+.partners-label {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.marquee-track {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+}
+.marquee-inner {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  gap: 12px;
+}
+.marquee-inner:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.partner-pill {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-2);
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.partner-pill:hover {
+  border-color: rgba(255,90,31,0.3);
+  color: var(--text-1);
+}
+.partner-icon {
+  font-size: 1rem;
+}
+
+/* ═══════════════════════════════════════════
+   FEATURE HIGHLIGHTS
+═══════════════════════════════════════════ */
+.features {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: var(--bg);
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--r-md);
+  background: rgba(255,90,31,0.1);
+  border: 1px solid rgba(255,90,31,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.feature-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-1);
+}
+.feature-desc {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════
+   CTA BAND
+═══════════════════════════════════════════ */
+.cta-band {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.cta-band-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 90% at 50% 50%, rgba(255,90,31,0.12) 0%, transparent 70%);
+}
+.cta-band-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 680px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.cta-band-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-lt);
+}
+.cta-band-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.cta-band-sub {
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 500px;
+}
+.cta-band-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cta-trust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+.cta-trust-dot {
+  width: 4px; height: 4px;
+  background: var(--border-md);
+  border-radius: 50%;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: clamp(3.5rem, 6vw, 5rem) 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-bottom: 3rem;
+}
+.footer-brand-desc {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 280px;
+}
+.footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+.social-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+.social-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: rgba(255,90,31,0.08);
+}
+.footer-col h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+  margin-bottom: 1.25rem;
+}
+.footer-col a {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-2);
+  margin-bottom: 0.75rem;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--text-1); }
+
+.footer-newsletter {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 8px;
+}
+.footer-newsletter input {
+  flex: 1;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-1);
+  outline: none;
+  transition: border-color 0.2s;
+  min-width: 0;
+}
+.footer-newsletter input::placeholder { color: var(--text-3); }
+.footer-newsletter input:focus { border-color: var(--brand); }
+.footer-newsletter button {
+  padding: 10px 16px;
+  background: var(--grad);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.footer-newsletter button:hover { opacity: 0.88; }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.footer-bottom a {
+  color: var(--text-3);
+  transition: color 0.2s;
+}
+.footer-bottom a:hover { color: var(--text-2); }
+.footer-bottom-sep {
+  width: 1px; height: 12px;
+  background: var(--border);
+}
+.footer-lk {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .how-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  .how-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .how-left .section-sub { margin-bottom: 2rem; }
+  .how-cta-row { display: none; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-login { display: none; }
+  .nav-burger { display: flex; }
+  .hero-stats .stat-sep { display: none; }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .section-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cta-band-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cta-band-buttons .btn-brand,
+  .cta-band-buttons .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
     gap: 2rem;
-    margin-top: 3rem;
   }
-  .step {
-    text-align: center; padding: 0 1rem;
+  .footer-newsletter {
+    flex-direction: column;
   }
-  .step-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 3.5rem; font-weight: 800;
-    color: rgba(192,24,28,0.12);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-  .step-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem; font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  .step-desc { font-size: 0.875rem; color: var(--gray); line-height: 1.6; }
+}
 
-  /* ── PARTNERS ── */
-  .partners {
-    background: var(--night);
-    padding: 70px 5vw;
-    text-align: center;
-  }
-  .partners-label {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
-    color: rgba(255,255,255,0.3); text-transform: uppercase;
-    margin-bottom: 2.5rem;
-  }
-  .partners-row {
-    display: flex; flex-wrap: wrap;
-    align-items: center; justify-content: center;
-    gap: 2.5rem 4rem;
-  }
-  .partner-chip {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem; font-weight: 700;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-  .partner-chip:hover { color: rgba(255,255,255,0.65); }
+@media (max-width: 480px) {
+  .search-bar input { font-size: 0.9rem; }
+  .search-submit { padding: 11px 16px; font-size: 0.85rem; }
+  .hero-stats { gap: 1.25rem; }
+  .popular-chips { gap: 6px; }
+}
 
-  /* ── CTA BAND ── */
-  .cta-band {
-    background: var(--red);
-    padding: 80px 5vw;
-    text-align: center;
-  }
-  .cta-band h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 800; color: var(--white);
-    letter-spacing: -0.02em; margin-bottom: 1rem;
-  }
-  .cta-band p { color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 2rem; line-height: 1.6; }
-  .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-white {
-    padding: 14px 32px;
-    background: var(--white); color: var(--red);
-    border: none; border-radius: 10px;
-    font-size: 0.95rem; font-weight: 700; cursor: pointer;
-    transition: opacity 0.2s; font-family: 'Inter', sans-serif;
-  }
-  .btn-white:hover { opacity: 0.88; }
-  .btn-outline {
-    padding: 14px 32px;
-    background: transparent; color: var(--white);
-    border: 2px solid rgba(255,255,255,0.4);
-    border-radius: 10px; font-size: 0.95rem; font-weight: 600;
-    cursor: pointer; transition: border-color 0.2s; font-family: 'Inter', sans-serif;
-  }
-  .btn-outline:hover { border-color: var(--white); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--night); color: rgba(255,255,255,0.4);
-    padding: 60px 5vw 40px;
-  }
-  .footer-top {
-    display: flex; justify-content: space-between;
-    flex-wrap: wrap; gap: 2.5rem;
-    margin-bottom: 3rem;
-  }
-  .footer-brand .nav-logo { font-size: 1.2rem; }
-  .footer-brand p {
-    margin-top: 0.75rem; font-size: 0.8rem; max-width: 240px; line-height: 1.6;
-  }
-  .footer-col h4 {
-    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.5);
-    margin-bottom: 1rem;
-  }
-  .footer-col a {
-    display: block; color: rgba(255,255,255,0.35);
-    text-decoration: none; font-size: 0.85rem;
-    margin-bottom: 0.6rem; transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--white); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.07);
-    padding-top: 1.5rem;
-    display: flex; justify-content: space-between;
-    flex-wrap: wrap; gap: 0.5rem;
-    font-size: 0.75rem;
-  }
-  .footer-bottom span { color: var(--gold); }
-
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .hero-stats { gap: 1.5rem; }
-    .search-tabs button { padding: 6px 12px; font-size: 0.72rem; }
-    .footer-top { flex-direction: column; }
-  }
+@media (min-width: 1920px) {
+  .container { max-width: 1440px; }
+  .hero-content { max-width: 1060px; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">24hours<span>.lk</span></div>
-  <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#how">How it works</a>
-    <a href="#partners">Partners</a>
-    <a href="#">List your service</a>
+<!-- ═══ NAVBAR ═══ -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="24hours.lk home">
+      <div class="nav-logo-icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="7.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 4" opacity="0.6"/>
+          <circle cx="10" cy="10" r="7.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-dashoffset="0" clip-path="inset(0 50% 0 0)"/>
+          <line x1="10" y1="10" x2="10" y2="5.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="10" y1="10" x2="13" y2="11.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10" cy="10" r="1.2" fill="white"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">24hours<span class="tld">.lk</span></span>
+    </a>
+
+    <div class="nav-links" role="menubar">
+      <a href="#services" role="menuitem">Services</a>
+      <a href="#how" role="menuitem">How it works</a>
+      <a href="#partners" role="menuitem">Partners</a>
+      <a href="#" role="menuitem">List your service</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="nav-login" aria-label="Log in">Log in</button>
+      <button class="nav-cta" aria-label="Get started free">Get Started Free</button>
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-  <button class="nav-cta">Sign up free</button>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-eyebrow">Sri Lanka's #1 Booking Platform</div>
-  <h1 class="hero-headline">
-    Everything you need to<br/><span class="accent">book in Sri Lanka</span>
-  </h1>
-  <p class="hero-sub">
-    Buses, hotels, cinemas, freelancers, events — one place, one account, available 24 hours a day.
-  </p>
-
-  <!-- SIGNATURE: unified search -->
-  <div class="search-wrap">
-    <div class="search-tabs" id="searchTabs">
-      <button class="active" onclick="setTab(this,'Search all services...')">All</button>
-      <button onclick="setTab(this,'Search bus routes...')">🚌 Bus</button>
-      <button onclick="setTab(this,'Search hotels...')">🏨 Hotel</button>
-      <button onclick="setTab(this,'Search now showing...')">🎬 Cinema</button>
-      <button onclick="setTab(this,'Find a freelancer...')">💼 Freelancer</button>
-      <button onclick="setTab(this,'Search events...')">🎉 Events</button>
-    </div>
-    <div class="search-box">
-      <input id="searchInput" type="text" placeholder="Search all services..."/>
-      <button class="search-btn">Search →</button>
-    </div>
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <a href="#services" onclick="closeDrawer()">Services</a>
+  <a href="#how" onclick="closeDrawer()">How it works</a>
+  <a href="#partners" onclick="closeDrawer()">Partners</a>
+  <a href="#" onclick="closeDrawer()">List your service</a>
+  <div class="drawer-cta">
+    <button class="btn-ghost" style="justify-content:center">Log in</button>
+    <button class="btn-brand" style="justify-content:center">Get Started Free →</button>
   </div>
+</div>
 
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Services</div>
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-labelledby="heroHeadline">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal" aria-label="Sri Lanka's #1 Booking Platform">
+      <span class="hero-badge-dot" aria-hidden="true">⚡</span>
+      Sri Lanka's #1 Booking Platform
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <div class="stat-num">800+</div>
-      <div class="stat-label">Partners</div>
+
+    <h1 class="hero-headline reveal reveal-d1" id="heroHeadline">
+      Everything you need<br/>
+      <span class="line-accent">to book in Sri Lanka</span>
+    </h1>
+
+    <p class="hero-sub reveal reveal-d2">
+      Buses, hotels, cinemas, freelancers, events — one platform, one account,
+      available every hour of every day.
+    </p>
+
+    <div class="hero-search reveal reveal-d3" role="search" aria-label="Book a service">
+      <div class="search-tabs" id="searchTabs" role="tablist" aria-label="Service categories">
+        <button class="active" role="tab" aria-selected="true" onclick="setTab(this,'Search all services...')">All</button>
+        <button role="tab" aria-selected="false" onclick="setTab(this,'Search bus routes...')">🚌 Bus</button>
+        <button role="tab" aria-selected="false" onclick="setTab(this,'Search hotels...')">🏨 Hotel</button>
+        <button role="tab" aria-selected="false" onclick="setTab(this,'Search cinemas...')">🎬 Cinema</button>
+        <button role="tab" aria-selected="false" onclick="setTab(this,'Find a freelancer...')">💼 Freelancer</button>
+        <button role="tab" aria-selected="false" onclick="setTab(this,'Browse events...')">🎉 Events</button>
+      </div>
+      <div class="search-bar">
+        <span class="search-bar-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <input id="searchInput" type="search" placeholder="What would you like to book today?" aria-label="Search services"/>
+        <div class="search-divider" aria-hidden="true"></div>
+        <button class="search-submit" type="submit" aria-label="Search">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <circle cx="6.5" cy="6.5" r="4.5" stroke="white" stroke-width="1.5"/>
+            <path d="M10 10l3 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Search
+        </button>
+      </div>
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <div class="stat-num">24/7</div>
-      <div class="stat-label">Available</div>
+
+    <div class="popular-chips reveal reveal-d4" aria-label="Popular searches">
+      <span class="popular-label">Popular:</span>
+      <button class="popular-chip" onclick="quickSearch('Bus Colombo to Kandy')">Bus Colombo → Kandy</button>
+      <button class="popular-chip" onclick="quickSearch('Hotels Galle')">Hotels Galle</button>
+      <button class="popular-chip" onclick="quickSearch('Cinema Colombo')">Cinema Colombo</button>
+      <button class="popular-chip" onclick="quickSearch('Web designer Colombo')">Web Designer</button>
+      <button class="popular-chip" onclick="quickSearch('Events this week')">Events this week</button>
     </div>
-  </div>
-</section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">What you can book</div>
-      <h2 class="section-title">Every service,<br/>one platform</h2>
-    </div>
-    <a href="#" class="section-link">View all services →</a>
-  </div>
-
-  <div class="services-grid">
-
-    <a href="#" class="service-card">
-      <div class="card-icon">🚌</div>
-      <div class="card-title">Bus Tickets</div>
-      <div class="card-desc">Book inter-city and private bus seats. SLTB, Intercity Express, and luxury coaches island-wide.</div>
-      <span class="card-badge">Available now</span>
-    </a>
-
-    <a href="#" class="service-card">
-      <div class="card-icon">🏨</div>
-      <div class="card-title">Hotels & Stays</div>
-      <div class="card-desc">From budget guesthouses in Ella to 5-star resorts in Bentota. Best rates, instant confirmation.</div>
-      <span class="card-badge">1,200+ hotels</span>
-    </a>
-
-    <a href="#" class="service-card">
-      <div class="card-icon">🎬</div>
-      <div class="card-title">Cinema Tickets</div>
-      <div class="card-desc">Pick your seat online at Liberty, Savoy, Empire, PVR, and cinemas across Sri Lanka.</div>
-      <span class="card-badge">Now showing</span>
-    </a>
-
-    <a href="#" class="service-card">
-      <div class="card-icon">💼</div>
-      <div class="card-title">Freelancers</div>
-      <div class="card-desc">Hire local designers, developers, writers, and photographers. Verified profiles, escrow payments.</div>
-      <span class="card-badge">500+ freelancers</span>
-    </a>
-
-    <a href="#" class="service-card">
-      <div class="card-icon">✈️</div>
-      <div class="card-title">Domestic Flights</div>
-      <div class="card-desc">Seaplane and helicopter transfers to Maldives or between Sri Lankan cities. Book in minutes.</div>
-      <span class="card-badge">Coming soon</span>
-    </a>
-
-    <a href="#" class="service-card">
-      <div class="card-icon">🎉</div>
-      <div class="card-title">Events & Concerts</div>
-      <div class="card-desc">Festivals, live music, sporting events, and cultural shows. Never miss what's happening near you.</div>
-      <span class="card-badge">Available now</span>
-    </a>
-
-    <a href="#" class="service-card">
-      <div class="card-icon">🚕</div>
-      <div class="card-title">Tuk & Taxi</div>
-      <div class="card-desc">Pre-book airport transfers and day tours with trusted drivers. Fixed rates, no surprises.</div>
-      <span class="card-badge">Available now</span>
-    </a>
-
-    <a href="#" class="service-card">
-      <div class="card-icon">🍽️</div>
-      <div class="card-title">Restaurant Tables</div>
-      <div class="card-desc">Reserve at top restaurants in Colombo, Kandy, Galle and beyond. With menus online.</div>
-      <span class="card-badge">Available now</span>
-    </a>
-
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">How it works</div>
-      <h2 class="section-title">Three steps to<br/>book anything</h2>
-    </div>
-  </div>
-  <div class="how-steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Search or Browse</div>
-      <div class="step-desc">Use the search bar or browse by service category. Everything is in one place — no switching between apps.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">Pick and Confirm</div>
-      <div class="step-desc">Choose your time, seat, or package. See prices clearly before you pay. Instant confirmation every time.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">Your Booking, Ready</div>
-      <div class="step-desc">Get your e-ticket or confirmation on WhatsApp, email, or in the app. Manage everything from one dashboard.</div>
+    <div class="hero-stats reveal reveal-d5" role="list" aria-label="Platform statistics">
+      <div class="stat-item" role="listitem">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Services</div>
+      </div>
+      <div class="stat-sep" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <div class="stat-num">800+</div>
+        <div class="stat-label">Partners</div>
+      </div>
+      <div class="stat-sep" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Available</div>
+      </div>
+      <div class="stat-sep" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <div class="stat-num">50K+</div>
+        <div class="stat-label">Bookings</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PARTNERS -->
-<section class="partners" id="partners">
+<!-- ═══ SERVICES ═══ -->
+<section class="services" id="services" aria-labelledby="servicesTitle">
+  <div class="container">
+    <div class="section-header-row">
+      <div class="section-header-left">
+        <div class="section-label reveal">What you can book</div>
+        <h2 class="section-title reveal reveal-d1" id="servicesTitle">Every service,<br/>one platform</h2>
+      </div>
+      <a href="#" class="view-all-link reveal" aria-label="View all services">
+        View all services
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="services-grid">
+      <a href="#" class="service-card reveal" aria-label="Book bus tickets">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">🚌</div>
+          <span class="card-badge">Available now</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Bus Tickets</div>
+          <div class="card-desc">Book inter-city and private bus seats. SLTB, Intercity Express, and luxury coaches island-wide.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          Book now
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="service-card reveal reveal-d1" aria-label="Book hotels and stays">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">🏨</div>
+          <span class="card-badge">1,200+ hotels</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Hotels & Stays</div>
+          <div class="card-desc">Budget guesthouses in Ella to 5-star resorts in Bentota. Best rates, instant confirmation.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          Explore stays
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="service-card reveal reveal-d2" aria-label="Book cinema tickets">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">🎬</div>
+          <span class="card-badge">Now showing</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Cinema Tickets</div>
+          <div class="card-desc">Pick your seat at Liberty, Savoy, Empire, PVR, and cinemas across Sri Lanka.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          See showings
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="service-card reveal reveal-d3" aria-label="Hire freelancers">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">💼</div>
+          <span class="card-badge">500+ freelancers</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Freelancers</div>
+          <div class="card-desc">Hire local designers, developers, writers, and photographers. Verified profiles, escrow payments.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          Find talent
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="service-card reveal" aria-label="Book tuk and taxi rides">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">🚕</div>
+          <span class="card-badge">Available now</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Tuk & Taxi</div>
+          <div class="card-desc">Pre-book airport transfers and day tours with trusted drivers. Fixed rates, no surprises.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          Book a ride
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="service-card reveal reveal-d1" aria-label="Book restaurant tables">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">🍽️</div>
+          <span class="card-badge">Available now</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Restaurant Tables</div>
+          <div class="card-desc">Reserve at top restaurants in Colombo, Kandy, Galle and beyond. Menus online.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          Reserve a table
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="service-card reveal reveal-d2" aria-label="Book events and concerts">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">🎉</div>
+          <span class="card-badge">Available now</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Events & Concerts</div>
+          <div class="card-desc">Festivals, live music, sporting events, and cultural shows. Never miss what's near you.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          Browse events
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="service-card reveal reveal-d3" aria-label="Book domestic flights">
+        <div class="card-top">
+          <div class="card-icon" aria-hidden="true">✈️</div>
+          <span class="card-badge soon">Coming soon</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Domestic Flights</div>
+          <div class="card-desc">Seaplane and helicopter transfers to Maldives or between Sri Lankan cities.</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">
+          Join waitlist
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how" id="how" aria-labelledby="howTitle">
+  <div class="container">
+    <div class="how-inner">
+      <div class="how-left">
+        <div class="section-label reveal">How it works</div>
+        <h2 class="section-title reveal reveal-d1" id="howTitle">Book anything<br/>in three steps</h2>
+        <p class="section-sub reveal reveal-d2">No app downloads. No account juggling. One place to book every service Sri Lanka has to offer — in under two minutes.</p>
+        <div class="how-cta-row reveal reveal-d3">
+          <button class="btn-brand">Start Booking Free →</button>
+          <a href="#services" class="btn-ghost">Browse services</a>
+        </div>
+      </div>
+
+      <div class="how-steps">
+        <div class="how-step reveal" aria-label="Step 1: Search">
+          <div class="step-num-wrap" aria-hidden="true">
+            <span class="step-num">01</span>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Search or Browse</div>
+            <div class="step-desc">Use the search bar or browse by category. Everything is in one place — no switching between apps or websites.</div>
+          </div>
+        </div>
+
+        <div class="how-step reveal reveal-d1" aria-label="Step 2: Choose">
+          <div class="step-num-wrap" aria-hidden="true">
+            <span class="step-num">02</span>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Pick and Confirm</div>
+            <div class="step-desc">Choose your time, seat, or package. Prices are clear before you pay. Instant confirmation, every time.</div>
+          </div>
+        </div>
+
+        <div class="how-step reveal reveal-d2" aria-label="Step 3: Book">
+          <div class="step-num-wrap" aria-hidden="true">
+            <span class="step-num">03</span>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Your Booking, Ready</div>
+            <div class="step-desc">Get your e-ticket or confirmation on WhatsApp, email, or in the app. Manage everything from one dashboard.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features" aria-labelledby="featuresTitle">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:clamp(2.5rem,5vw,3.5rem);">
+      <div class="section-label reveal" style="justify-content:center">Why 24hours.lk</div>
+      <h2 class="section-title reveal reveal-d1" style="margin-top:0.5rem" id="featuresTitle">Built for Sri Lanka,<br/>designed for everyone</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon" aria-hidden="true">⚡</div>
+        <div class="feature-title">Instant Confirmation</div>
+        <div class="feature-desc">Every booking is confirmed in real-time. No waiting for a callback. No uncertainty. Your booking is locked the moment you pay.</div>
+      </div>
+      <div class="feature-card reveal reveal-d1">
+        <div class="feature-icon" aria-hidden="true">🔒</div>
+        <div class="feature-title">Secure Payments</div>
+        <div class="feature-desc">LKR payments via card, bank transfer, or mobile wallet. PCI-DSS compliant. Your money is protected with escrow for freelancer hires.</div>
+      </div>
+      <div class="feature-card reveal reveal-d2">
+        <div class="feature-icon" aria-hidden="true">📱</div>
+        <div class="feature-title">WhatsApp Updates</div>
+        <div class="feature-desc">Confirmations, reminders, and e-tickets arrive on WhatsApp. The app Sri Lanka already uses — no extra downloads needed.</div>
+      </div>
+      <div class="feature-card reveal reveal-d3">
+        <div class="feature-icon" aria-hidden="true">🗂️</div>
+        <div class="feature-title">One Dashboard</div>
+        <div class="feature-desc">All your bookings — bus, hotel, cinema, freelancers — managed from a single dashboard. Cancel, reschedule, or share in one tap.</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" aria-hidden="true">🤝</div>
+        <div class="feature-title">Verified Partners</div>
+        <div class="feature-desc">Every service provider on the platform is vetted. Ratings, reviews, and dispute resolution built in so you can book with confidence.</div>
+      </div>
+      <div class="feature-card reveal reveal-d1">
+        <div class="feature-icon" aria-hidden="true">🌙</div>
+        <div class="feature-title">24/7 Support</div>
+        <div class="feature-desc">Live chat, WhatsApp, and phone support around the clock. Because your plans don't keep office hours — and neither do we.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARTNERS ═══ -->
+<section class="partners" id="partners" aria-label="Trusted partners">
   <div class="partners-label">Trusted by Sri Lanka's leading services</div>
-  <div class="partners-row">
-    <div class="partner-chip">SLTB</div>
-    <div class="partner-chip">Intercity Express</div>
-    <div class="partner-chip">Liberty Cinema</div>
-    <div class="partner-chip">Savoy Cinema</div>
-    <div class="partner-chip">Agoda LK</div>
-    <div class="partner-chip">BookMyShow LK</div>
-    <div class="partner-chip">PickMe</div>
-    <div class="partner-chip">Yamu.lk</div>
+  <div class="marquee-track" aria-hidden="true">
+    <div class="marquee-inner" id="marqueeInner">
+      <!-- Set 1 -->
+      <div class="partner-pill"><span class="partner-icon">🚌</span> SLTB</div>
+      <div class="partner-pill"><span class="partner-icon">🚍</span> Intercity Express</div>
+      <div class="partner-pill"><span class="partner-icon">🎬</span> Liberty Cinema</div>
+      <div class="partner-pill"><span class="partner-icon">🎭</span> Savoy Cinema</div>
+      <div class="partner-pill"><span class="partner-icon">🏨</span> Agoda LK</div>
+      <div class="partner-pill"><span class="partner-icon">🎟️</span> BookMyShow LK</div>
+      <div class="partner-pill"><span class="partner-icon">🚕</span> PickMe</div>
+      <div class="partner-pill"><span class="partner-icon">🍽️</span> Yamu.lk</div>
+      <div class="partner-pill"><span class="partner-icon">🎬</span> Empire Cinemas</div>
+      <div class="partner-pill"><span class="partner-icon">🏨</span> Booking.com LK</div>
+      <div class="partner-pill"><span class="partner-icon">🚌</span> Nilway Tours</div>
+      <div class="partner-pill"><span class="partner-icon">🍽️</span> The Ministry of Crab</div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="partner-pill"><span class="partner-icon">🚌</span> SLTB</div>
+      <div class="partner-pill"><span class="partner-icon">🚍</span> Intercity Express</div>
+      <div class="partner-pill"><span class="partner-icon">🎬</span> Liberty Cinema</div>
+      <div class="partner-pill"><span class="partner-icon">🎭</span> Savoy Cinema</div>
+      <div class="partner-pill"><span class="partner-icon">🏨</span> Agoda LK</div>
+      <div class="partner-pill"><span class="partner-icon">🎟️</span> BookMyShow LK</div>
+      <div class="partner-pill"><span class="partner-icon">🚕</span> PickMe</div>
+      <div class="partner-pill"><span class="partner-icon">🍽️</span> Yamu.lk</div>
+      <div class="partner-pill"><span class="partner-icon">🎬</span> Empire Cinemas</div>
+      <div class="partner-pill"><span class="partner-icon">🏨</span> Booking.com LK</div>
+      <div class="partner-pill"><span class="partner-icon">🚌</span> Nilway Tours</div>
+      <div class="partner-pill"><span class="partner-icon">🍽️</span> The Ministry of Crab</div>
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-band">
-  <h2>Ready to book smarter?</h2>
-  <p>Join thousands of Sri Lankans who save time every day with 24hours.lk — sign up for free.</p>
-  <div class="cta-group">
-    <button class="btn-white">Create free account</button>
-    <button class="btn-outline">List your service</button>
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band" aria-labelledby="ctaTitle">
+  <div class="cta-band-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="cta-band-inner">
+      <div class="cta-band-eyebrow reveal" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polygon points="7,1 8.8,5.3 13.5,5.7 10,8.9 11.1,13.5 7,11 2.9,13.5 4,8.9 0.5,5.7 5.2,5.3" fill="#FF7A45"/></svg>
+        Join 50,000+ happy bookers
+      </div>
+      <h2 class="cta-band-title reveal reveal-d1" id="ctaTitle">
+        Ready to book<br/>
+        <span class="grad-text">smarter?</span>
+      </h2>
+      <p class="cta-band-sub reveal reveal-d2">
+        Join thousands of Sri Lankans who save time every day. One account for every booking you'll ever need.
+      </p>
+      <div class="cta-band-buttons reveal reveal-d3">
+        <button class="btn-brand" style="font-size:0.95rem;padding:15px 32px;">Create Free Account →</button>
+        <button class="btn-ghost" style="font-size:0.95rem;padding:15px 32px;">List Your Service</button>
+      </div>
+      <div class="cta-trust reveal reveal-d4" aria-label="Trust indicators">
+        <span>No credit card required</span>
+        <span class="cta-trust-dot" aria-hidden="true"></span>
+        <span>Free to use</span>
+        <span class="cta-trust-dot" aria-hidden="true"></span>
+        <span>Cancel anytime</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="nav-logo">24hours<span style="color:var(--gold)">.lk</span></div>
-      <p>Sri Lanka's unified booking platform. Available 24 hours a day, island-wide.</p>
+<!-- ═══ FOOTER ═══ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div>
+        <a href="/" class="nav-logo" aria-label="24hours.lk home" style="display:inline-flex">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20">
+              <circle cx="10" cy="10" r="7.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 4" opacity="0.6"/>
+              <circle cx="10" cy="10" r="7.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-dashoffset="0" clip-path="inset(0 50% 0 0)"/>
+              <line x1="10" y1="10" x2="10" y2="5.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="10" y1="10" x2="13" y2="11.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="10" cy="10" r="1.2" fill="white"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">24hours<span class="tld">.lk</span></span>
+        </a>
+        <p class="footer-brand-desc">Sri Lanka's unified booking platform. One account for every service, available 24 hours a day, island-wide.</p>
+        <div class="footer-social" aria-label="Social media links">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Instagram">in</a>
+          <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">Li</a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <nav class="footer-col" aria-label="Services">
+        <h4>Services</h4>
+        <a href="#">Bus Tickets</a>
+        <a href="#">Hotels & Stays</a>
+        <a href="#">Cinema Tickets</a>
+        <a href="#">Freelancers</a>
+        <a href="#">Events</a>
+        <a href="#">Tuk & Taxi</a>
+        <a href="#">Restaurants</a>
+      </nav>
+
+      <!-- Company -->
+      <nav class="footer-col" aria-label="Company">
+        <h4>Company</h4>
+        <a href="#">About us</a>
+        <a href="#">List your service</a>
+        <a href="#">Careers</a>
+        <a href="#">Press & Media</a>
+        <a href="#">Blog</a>
+      </nav>
+
+      <!-- Support & Legal -->
+      <div class="footer-col">
+        <nav aria-label="Support">
+          <h4>Support</h4>
+          <a href="#">Help centre</a>
+          <a href="#">Contact us</a>
+          <a href="#">Refund policy</a>
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms of service</a>
+        </nav>
+        <div style="margin-top:1.5rem">
+          <h4 style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-3);margin-bottom:0.75rem;">Stay updated</h4>
+          <div class="footer-newsletter" role="form" aria-label="Newsletter signup">
+            <input type="email" placeholder="your@email.com" aria-label="Email address"/>
+            <button type="submit">→</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <a href="#">Bus Tickets</a>
-      <a href="#">Hotels</a>
-      <a href="#">Cinema</a>
-      <a href="#">Freelancers</a>
-      <a href="#">Events</a>
+
+    <div class="footer-bottom">
+      <span>© 2025 24hours.lk — All rights reserved</span>
+      <div class="footer-bottom-right">
+        <a href="#">Privacy</a>
+        <span class="footer-bottom-sep" aria-hidden="true"></span>
+        <a href="#">Terms</a>
+        <span class="footer-bottom-sep" aria-hidden="true"></span>
+        <span>Made with ♥ in <span class="footer-lk">Sri Lanka 🦁</span></span>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="#">About us</a>
-      <a href="#">List your service</a>
-      <a href="#">Careers</a>
-      <a href="#">Press</a>
-    </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <a href="#">Help centre</a>
-      <a href="#">Contact us</a>
-      <a href="#">Refund policy</a>
-      <a href="#">Privacy policy</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2025 24hours.lk — All rights reserved</div>
-    <div>Made with ♥ in <span>Sri Lanka 🦁</span></div>
   </div>
 </footer>
 
 <script>
-  function setTab(btn, placeholder) {
-    document.querySelectorAll('.search-tabs button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('searchInput').placeholder = placeholder;
+/* ═══════════════════════════════════════════
+   NAV SCROLL STATE
+═══════════════════════════════════════════ */
+const nav = document.getElementById('nav');
+const scrollHandler = () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+};
+window.addEventListener('scroll', scrollHandler, { passive: true });
+scrollHandler();
+
+/* ═══════════════════════════════════════════
+   MOBILE DRAWER
+═══════════════════════════════════════════ */
+const burger = document.getElementById('navBurger');
+const drawer = document.getElementById('navDrawer');
+let drawerOpen = false;
+
+function closeDrawer() {
+  drawerOpen = false;
+  burger.classList.remove('open');
+  drawer.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+burger.addEventListener('click', () => {
+  drawerOpen = !drawerOpen;
+  burger.classList.toggle('open', drawerOpen);
+  drawer.classList.toggle('open', drawerOpen);
+  burger.setAttribute('aria-expanded', String(drawerOpen));
+  document.body.style.overflow = drawerOpen ? 'hidden' : '';
+});
+
+document.querySelectorAll('.nav-drawer a').forEach(a => {
+  a.addEventListener('click', closeDrawer);
+});
+
+/* ═══════════════════════════════════════════
+   SEARCH TABS
+═══════════════════════════════════════════ */
+function setTab(btn, placeholder) {
+  document.querySelectorAll('.search-tabs button').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  document.getElementById('searchInput').placeholder = placeholder;
+  document.getElementById('searchInput').focus();
+}
+
+function quickSearch(query) {
+  document.getElementById('searchInput').value = query;
+  document.getElementById('searchInput').focus();
+}
+
+/* ═══════════════════════════════════════════
+   INTERSECTION OBSERVER (REVEAL)
+═══════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ═══════════════════════════════════════════
+   HERO CANVAS — floating particles
+═══════════════════════════════════════════ */
+(function initCanvas() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  let W, H, particles;
+  const COUNT = window.innerWidth < 600 ? 28 : 55;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
   }
+
+  function initParticles() {
+    particles = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 2.2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.25,
+      alpha: Math.random() * 0.4 + 0.08,
+      pulse: Math.random() * Math.PI * 2,
+    }));
+  }
+
+  function draw(time) {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.pulse += 0.018;
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      if (p.y > H + 10) p.y = -10;
+
+      const alpha = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,90,31,${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  initParticles();
+  requestAnimationFrame(draw);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { resize(); initParticles(); }, 200);
+  }, { passive: true });
+})();
+
+/* ═══════════════════════════════════════════
+   KEYBOARD NAV — close drawer on Escape
+═══════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && drawerOpen) closeDrawer();
+});
 </script>
 
 </body>
